@@ -1,0 +1,407 @@
+Windows PowerShell
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Попробуйте новую кроссплатформенную оболочку PowerShell (https://aka.ms/pscore6)
+
+PS C:\Users\Thomas Shelby> docker build -t Dockerfile
+ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+PS C:\Users\Thomas Shelby> docker build -t Dockerfile2
+ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+PS C:\Users\Thomas Shelby> docker build -t Dockerfile2 .
+[+] Building 0.0s (0/0)                                                                            docker:desktop-linux
+ERROR: invalid tag "Dockerfile2": repository name must be lowercase
+PS C:\Users\Thomas Shelby> docker build -t dockerfile2 .
+[+] Building 0.1s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby> docker build -t dockerfile .
+[+] Building 0.0s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby> docker build -t dockerfile .
+[+] Building 0.0s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby> cd test
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile .
+[+] Building 0.1s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile .
+[+] Building 0.0s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile .
+[+] Building 0.0s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby\test> ls
+
+
+    Каталог: C:\Users\Thomas Shelby\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        19.02.2025     17:04            159 dockerfile.txt
+
+
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile.txt .
+[+] Building 0.0s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+PS C:\Users\Thomas Shelby\test> New-Item -Path . -Name "Dockerfile" -ItemType "File"
+
+
+    Каталог: C:\Users\Thomas Shelby\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        19.02.2025     17:07              0 Dockerfile
+
+
+PS C:\Users\Thomas Shelby\test> cat Dockerfile
+PS C:\Users\Thomas Shelby\test> notepad Dockerfile
+PS C:\Users\Thomas Shelby\test> notepad Dockerfile
+PS C:\Users\Thomas Shelby\test> ls
+
+
+    Каталог: C:\Users\Thomas Shelby\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        19.02.2025     17:09            159 Dockerfile
+
+
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2
+ERROR: "docker buildx build" requires exactly 1 argument.
+See 'docker buildx build --help'.
+
+Usage:  docker buildx build [OPTIONS] PATH | URL | -
+
+Start a build
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.1s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 198B                                                                               0.0s
+Dockerfile:1
+--------------------
+   1 | >>> FROM python:3.10WORKDIR /app
+   2 |     COPY /home/Thomas Shelby/Desktop/min.py /app/min.py
+   3 |     RUN pip install --no-cache-dir -r requirements.txt
+--------------------
+ERROR: failed to solve: dockerfile parse error on line 1: FROM requires either one or three arguments
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/h8p5v3uhizyplwzv251723e0y
+PS C:\Users\Thomas Shelby\test> notepad Dockerfile
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 2.9s (8/9)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 200B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     2.7s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.1s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => ERROR [3/4] COPY /home/Thomas Shelby/Desktop/min.py /app/min.py                                                0.0s
+------
+ > [3/4] COPY /home/Thomas Shelby/Desktop/min.py /app/min.py:
+------
+Dockerfile:3
+--------------------
+   1 |     FROM python:3.10
+   2 |     WORKDIR /app
+   3 | >>> COPY /home/Thomas Shelby/Desktop/min.py /app/min.py
+   4 |     RUN pip install --no-cache-dir -r requirements.txt
+   5 |     CMD ["python", "app.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::daqjjp3wlt9neq7wmka4v13k2: "/home/Thomas": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/nkzr77elej5pas6xhwnhfn7ng
+PS C:\Users\Thomas Shelby\test> notepad Dockerfile
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.7s (7/8)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 197B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     0.6s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => ERROR [3/4] COPY C:/Thomas Shelby/Desktop/min.py /app/min.py                                                   0.0s
+------
+ > [3/4] COPY C:/Thomas Shelby/Desktop/min.py /app/min.py:
+------
+Dockerfile:3
+--------------------
+   1 |     FROM python:3.10
+   2 |     WORKDIR /app
+   3 | >>> COPY C:/Thomas Shelby/Desktop/min.py /app/min.py
+   4 |     RUN pip install --no-cache-dir -r requirements.txt
+   5 |     CMD ["python", "app.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::18hczahnnftq9hz0ipqxrgthv: "/Shelby/Desktop/min.py": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/9yg8rzx140cbzufha9cg4ej97
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.7s (7/8)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 193B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     0.6s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => ERROR [3/4] COPY C:/Users/Thomas Shelby/test /app/min.py                                                       0.0s
+------
+ > [3/4] COPY C:/Users/Thomas Shelby/test /app/min.py:
+------
+Dockerfile:3
+--------------------
+   1 |     FROM python:3.10
+   2 |     WORKDIR /app
+   3 | >>> COPY C:/Users/Thomas Shelby/test /app/min.py
+   4 |     RUN pip install --no-cache-dir -r requirements.txt
+   5 |     CMD ["python", "app.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::yk7sn1qmjmy9r31hrxmow0uy0: "/Shelby/test": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/e3u88obwdquyppe4yn6ap3fvb
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.7s (7/8)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 193B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     0.6s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => ERROR [3/4] COPY C:UsersThomas Shelbytest /app/min.py                                                          0.0s
+------
+ > [3/4] COPY C:UsersThomas Shelbytest /app/min.py:
+------
+Dockerfile:3
+--------------------
+   1 |     FROM python:3.10
+   2 |     WORKDIR /app
+   3 | >>> COPY C:\Users\Thomas Shelby\test /app/min.py
+   4 |     RUN pip install --no-cache-dir -r requirements.txt
+   5 |     CMD ["python", "app.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::eqnm72v6dke1yqmmr123rg52c: "/C:UsersThomas": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/5qyc6o630mat5wmhq3uabpxxi
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.8s (7/8)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 193B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     0.7s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => ERROR [3/4] COPY C:/Users/Thomas Shelby/test /app/min.py                                                       0.0s
+------
+ > [3/4] COPY C:/Users/Thomas Shelby/test /app/min.py:
+------
+Dockerfile:3
+--------------------
+   1 |     FROM python:3.10
+   2 |     WORKDIR /app
+   3 | >>> COPY C:/Users/Thomas Shelby/test /app/min.py
+   4 |     RUN pip install --no-cache-dir -r requirements.txt
+   5 |     CMD ["python", "app.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::1l0it9ec9c1m6cimzlov23jo2: "/Shelby/test": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/vwm3r3zuhhf2ix3zlw6ztbf37
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.7s (8/9)                                                                            docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 235B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                     0.6s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => CANCELED [1/5] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69  0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0c  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 1.93kB                                                                                0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                      0.0s
+ => CACHED [3/5] COPY min.py /app/min.py                                                                           0.0s
+ => ERROR [4/5] COPY requirements.txt /app/requirements.txt                                                        0.0s
+------
+ > [4/5] COPY requirements.txt /app/requirements.txt:
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY min.py /app/min.py
+   4 | >>> COPY requirements.txt /app/requirements.txt
+   5 |     RUN pip install --no-cache-dir -r /app/requirements.txt
+   6 |     CMD ["python", "/app/min.py"]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref r5nnczxxi54zawypturzufhta::za1gvdss5dr2u8ndk9pa6wdbh: "/requirements.txt": not found
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/a54x14da5tuib68y3wykpsdkk
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 183.0s (8/8) FINISHED                                                                                                                                                                                                             docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                           0.0s
+ => => transferring dockerfile: 188B                                                                                                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                                                                                                                                                                 0.6s
+ => [internal] load .dockerignore                                                                                                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                0.0s
+ => [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                         180.2s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                           0.0s
+ => => sha256:e844e4b3e2703ef66467e25423be00f95eee69a91664f91d4464b4cf6966bc5e 248B / 248B                                                                                                                                                                     0.6s
+ => => sha256:57e75b8db17c16e4ec2be73e3ea713d246ea9c1943cb96c04b155bf873a72504 21.39MB / 21.39MB                                                                                                                                                              28.0s
+ => => sha256:ff1cff00b1ddb9d70a55cbd8a6e711a0cb771f4adbb513cb4370e752366692ff 6.16MB / 6.16MB                                                                                                                                                                12.6s
+ => => sha256:35af2a7690f2b43e7237d1fae8e3f2350dfb25f3249e9cf65121866f9c56c772 64.39MB / 64.39MB                                                                                                                                                             114.2s
+ => => sha256:7576b00d9bb10cc967bb5bdeeb3d5fa078ac8800e112aa03ed15ec199662d4f7 211.33MB / 211.33MB                                                                                                                                                           176.6s
+ => => sha256:32b550be6cb62359a0f3a96bc0dc289f8b45d097eaad275887f163c6780b4108 24.06MB / 24.06MB                                                                                                                                                              47.9s
+ => => sha256:a492eee5e55976c7d3feecce4c564aaf6f14fb07fdc5019d06f4154eddc93fde 48.48MB / 48.48MB                                                                                                                                                              79.1s
+ => => extracting sha256:a492eee5e55976c7d3feecce4c564aaf6f14fb07fdc5019d06f4154eddc93fde                                                                                                                                                                      0.7s
+ => => extracting sha256:32b550be6cb62359a0f3a96bc0dc289f8b45d097eaad275887f163c6780b4108                                                                                                                                                                      0.3s
+ => => extracting sha256:35af2a7690f2b43e7237d1fae8e3f2350dfb25f3249e9cf65121866f9c56c772                                                                                                                                                                      1.0s
+ => => extracting sha256:7576b00d9bb10cc967bb5bdeeb3d5fa078ac8800e112aa03ed15ec199662d4f7                                                                                                                                                                      2.6s
+ => => extracting sha256:ff1cff00b1ddb9d70a55cbd8a6e711a0cb771f4adbb513cb4370e752366692ff                                                                                                                                                                      0.1s
+ => => extracting sha256:57e75b8db17c16e4ec2be73e3ea713d246ea9c1943cb96c04b155bf873a72504                                                                                                                                                                      0.3s
+ => => extracting sha256:e844e4b3e2703ef66467e25423be00f95eee69a91664f91d4464b4cf6966bc5e                                                                                                                                                                      0.0s
+ => [internal] load build context                                                                                                                                                                                                                              0.0s
+ => => transferring context: 28B                                                                                                                                                                                                                               0.0s
+ => [2/4] WORKDIR /app                                                                                                                                                                                                                                         0.5s
+ => [3/4] COPY min.py /app/min.py                                                                                                                                                                                                                              0.0s
+ => ERROR [4/4] RUN pip install --no-cache-dir -r /app/requirements.txt                                                                                                                                                                                        1.6s
+------
+ > [4/4] RUN pip install --no-cache-dir -r /app/requirements.txt:
+1.155 ERROR: Could not open requirements file: [Errno 2] No such file or directory: '/app/requirements.txt'
+1.488
+1.488 [notice] A new release of pip is available: 23.0.1 -> 25.0.1
+1.488 [notice] To update, run: pip install --upgrade pip
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY min.py /app/min.py
+   4 | >>> RUN pip install --no-cache-dir -r /app/requirements.txt
+   5 |     CMD ["python", "/app/min.py"]
+--------------------
+ERROR: failed to solve: process "/bin/sh -c pip install --no-cache-dir -r /app/requirements.txt" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/blzhwmviccj8ggbufugkleip0
+[+] Building 2.9s (9/9) FINISHED                                                                                                                                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                           0.0s
+ => => transferring dockerfile: 188B                                                                                                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                                                                                                                                                                 1.2s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                                                                                                                                  0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                0.0s
+ => [1/4] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                           0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                           0.0s
+ => [internal] load build context                                                                                                                                                                                                                              0.0s
+ => => transferring context: 28B                                                                                                                                                                                                                               0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                                                                                                                                                                  0.0s
+ => CACHED [3/4] COPY min.py /app/min.py                                                                                                                                                                                                                       0.0s
+ => ERROR [4/4] RUN pip install --no-cache-dir -r /app/requirements.txt                                                                                                                                                                                        1.7s
+------
+ > [4/4] RUN pip install --no-cache-dir -r /app/requirements.txt:
+1.316 ERROR: Could not open requirements file: [Errno 2] No such file or directory: '/app/requirements.txt'
+1.631
+1.631 [notice] A new release of pip is available: 23.0.1 -> 25.0.1
+1.631 [notice] To update, run: pip install --upgrade pip
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY min.py /app/min.py
+   4 | >>> RUN pip install --no-cache-dir -r /app/requirements.txt
+   5 |     CMD ["python", "/app/min.py"]
+--------------------
+ERROR: failed to solve: process "/bin/sh -c pip install --no-cache-dir -r /app/requirements.txt" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/kq74t713dbwp27j4u3tdz3new
+PS C:\Users\Thomas Shelby\test> docker build -t dockerfile2 .
+[+] Building 0.9s (8/8) FINISHED                                                                                                                                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                                           0.0s
+ => => transferring dockerfile: 127B                                                                                                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/python:3.10                                                                                                                                                                                                 0.6s
+ => [internal] load .dockerignore                                                                                                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                           0.0s
+ => => resolve docker.io/library/python:3.10@sha256:76f22e4ce53774c1f5eb0ba145edb57b908e7aa329fee75eca69b511c1d0cd8a                                                                                                                                           0.0s
+ => [internal] load build context                                                                                                                                                                                                                              0.0s
+ => => transferring context: 28B                                                                                                                                                                                                                               0.0s
+ => CACHED [2/3] WORKDIR /app                                                                                                                                                                                                                                  0.0s
+ => CACHED [3/3] COPY min.py /app/min.py                                                                                                                                                                                                                       0.0s
+ => exporting to image                                                                                                                                                                                                                                         0.2s
+ => => exporting layers                                                                                                                                                                                                                                        0.1s
+ => => exporting manifest sha256:cfbef3bc2fae6b71d8f17e3f569f2593157ad26e851a85c1f1ce00e231f79f70                                                                                                                                                              0.0s
+ => => exporting config sha256:9885a26d894e67f800733a981fa7e8835339a5bc66ea3b4897b9658a8589a6e1                                                                                                                                                                0.0s
+ => => exporting attestation manifest sha256:9fc1d53ba0b4926e07182c76e7c1f9040d18c303dc960fbd13a3a8aff84c95f8                                                                                                                                                  0.0s
+ => => exporting manifest list sha256:d7fd93e08b670a34087966dc5a173097b0268df0352572257cab5218ba5ea9de                                                                                                                                                         0.0s
+ => => naming to docker.io/library/dockerfile2:latest                                                                                                                                                                                                          0.0s
+ => => unpacking to docker.io/library/dockerfile2:latest                                                                                                                                                                                                       0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/u6365c9zfcveggdishjv0ffop
+PS C:\Users\Thomas Shelby\test> ls
+
+
+    Каталог: C:\Users\Thomas Shelby\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        19.02.2025     17:19             90 Dockerfile
+-a----        19.02.2025     16:20           1895 min.py
+-a----        19.02.2025     17:18              6 requirements.txt
+
+
+PS C:\Users\Thomas Shelby\test> notepad Dockerfile
+PS C:\Users\Thomas Shelby\test> docker logs dockerfile2
+Error response from daemon: No such container: dockerfile2
+PS C:\Users\Thomas Shelby\test> docker logs Dockerfile
+Error response from daemon: No such container: Dockerfile
+PS C:\Users\Thomas Shelby\test> docker run -d --name dockerfile3 dockerfile2
+e32d023b8783198c80bf23b0b311db88b76aa5db8821b79136d7b14b0fb706a3
+PS C:\Users\Thomas Shelby\test> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\Thomas Shelby\test> docker logs e32d023b8783198c80bf23b0b311db88b76aa5db8821b79136d7b14b0fb706a3
+Traceback (most recent call last):
+  File "/app/min.py", line 1, in <module>
+    import serial
+ModuleNotFoundError: No module named 'serial'
+PS C:\Users\Thomas Shelby\test>
