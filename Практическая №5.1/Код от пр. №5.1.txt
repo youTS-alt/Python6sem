@@ -1,0 +1,104 @@
+import telepot 
+import time 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import io
+
+def handle(msg): 
+    chat_id = msg['chat']['id'] 
+    command = msg['text'] 
+    print('Got command: %s' % command) 
+    print('From : %s' % chat_id) 
+    
+    if command == '/command1': 
+        df_can = pd.read_excel('https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/DV0101EN/labs/Data_Files/Canada.xlsx',
+                              sheet_name='Canada by Citizenship',
+                              skiprows=range(20),
+                              skipfooter=2)
+        
+        df_can.drop(['AREA', 'REG', 'DEV', 'Type', 'Coverage'], axis=1, inplace=True)
+        df_can.rename(columns={'OdName':'Country', 'AreaName':'Continent','RegName':'Region'}, inplace=True)
+        
+        df_can.columns = list(map(str, df_can.columns))
+        df_can.set_index('Country', inplace=True)
+        df_can = df_can.apply(pd.to_numeric, errors='coerce')
+        df_can.fillna(0, inplace=True)
+        
+        years = list(map(str, range(1980, 2014)))
+        df_can['Total'] = df_can[years].sum(axis=1)
+        df_can.sort_values(['Total'], ascending=False, axis=0, inplace=True)
+        
+        df_top5 = df_can.head()
+        df_top5 = df_top5[years].transpose()
+        
+        plt.style.use('ggplot')
+        df_top5.index = df_top5.index.map(int)
+        
+        plt.figure(figsize=(20, 10))
+        df_top5.plot(kind='area',
+                    stacked=False,
+                    figsize=(20, 10))
+        
+        plt.title('Immigration Trend of Top 5 Countries')
+        plt.ylabel('Number of Immigrants')
+        plt.xlabel('Years')
+        
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        
+        bot.sendPhoto(chat_id, buf)
+        buf.close()
+        plt.close()
+        
+    elif command == '/command2': 
+        df_can = pd.read_excel('https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/DV0101EN/labs/Data_Files/Canada.xlsx',
+                              sheet_name='Canada by Citizenship',
+                              skiprows=range(20),
+                              skipfooter=2)
+        
+        df_can.drop(['AREA', 'REG', 'DEV', 'Type', 'Coverage'], axis=1, inplace=True)
+        df_can.rename(columns={'OdName':'Country', 'AreaName':'Continent','RegName':'Region'}, inplace=True)
+        
+        df_can.columns = list(map(str, df_can.columns))
+        df_can.set_index('Country', inplace=True)
+        df_can = df_can.apply(pd.to_numeric, errors='coerce')
+        df_can.fillna(0, inplace=True)
+        
+        years = list(map(str, range(1980, 2014)))
+        df_can['Total'] = df_can[years].sum(axis=1)
+        
+        plt.style.use('ggplot')
+        plt.figure(figsize=(8, 5))
+        df_can['2013'].plot(kind='hist')
+        plt.title('Histogram of Immigration from 195 Countries in 2013')
+        plt.ylabel('Number of Countries')
+        plt.xlabel('Number of Immigrants')
+        
+        buf1 = io.BytesIO()
+        plt.savefig(buf1, format='png')
+        buf1.seek(0)
+        bot.sendPhoto(chat_id, buf1)
+        buf1.close()
+        plt.close()
+        
+        df_iceland = df_can.loc['Iceland', years]
+        plt.figure(figsize=(10, 6))
+        df_iceland.plot(kind='bar')
+        plt.xlabel('Year')
+        plt.ylabel('Number of Immigrants')
+        plt.title('Icelandic Immigrants to Canada from 1980 to 2013')
+        
+        buf2 = io.BytesIO()
+        plt.savefig(buf2, format='png')
+        buf2.seek(0)
+        bot.sendPhoto(chat_id, buf2)
+        buf2.close()
+        plt.close()
+
+bot = telepot.Bot('7033338568:AAHDJ9F7KT6tuIonJsdjesHfhBOqa9_tnbA') 
+bot.message_loop(handle) 
+print('I am listening ...') 
+while 1: 
+    time.sleep(10)
